@@ -1,23 +1,26 @@
 import React from 'react';
+import Guess from '../Guess/Guess';
 
-function GuessResults({prevInputs}) {
+import {NUM_OF_GUESSES_ALLOWED} from '../../constants';
+import {range} from '../../utils';
 
+function GuessResults({prevInputs, answer}) {
 
+  console.log( prevInputs );
   return (
   <div className="guess-results">
-    {prevInputs.map((word) => {
+    {range(NUM_OF_GUESSES_ALLOWED).map((num) => {
       return(
-        <p 
-        className="guess"
-        key={word.id}
-         >
-          {word.input}
-        </p>
+        <>
+          <Guess
+          value = {prevInputs[num]} 
+          key= {num}
+          answer = {answer}
+          />
+        </>
       )
     })}
-
   </div>
-
   );
 }
 
